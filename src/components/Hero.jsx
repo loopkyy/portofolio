@@ -16,7 +16,7 @@ export default function Hero() {
           Rizky Riaadha Rismandana
         </h2>
         <p className="text-xl md:text-2xl text-slate-300 mb-8">
-          Full Stack Developer
+          Full Stack Developer & UI/UX Enthusiast
         </p>
         <p className="text-slate-400 max-w-2xl mx-auto mb-12">
           Passionate about creating beautiful, functional web applications that solve real-world problems.
