@@ -104,21 +104,21 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Animated role text */}
+        {/* Animasi role text */}
         <div className="mb-8">
           <p className="text-2xl md:text-3xl font-mono text-gray-300 mb-2 min-h-[2.5rem]">
             {text}
             <span className="animate-pulse">|</span>
           </p>
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Crafting <span className="text-cyan-400 font-medium">digital experiences</span> that blend 
-            cutting-edge technology with <span className="text-pink-400 font-medium">aesthetic design</span>
+            Turning <span className="text-cyan-400 font-medium">ideas</span>{' '}into{' '}
+            <span className="text-pink-400 font-medium">beautiful web experiences</span>
           </p>
         </div>
 
         {/* Tech stack tags */}
         <div className="flex flex-wrap justify-center gap-3 mb-10 max-w-2xl mx-auto">
-          {['React', 'TypeScript', 'Node.js', 'Next.js', 'Tailwind', 'MongoDB'].map((tech, index) => (
+          {['HTML', 'CSS', 'JavaScript', 'React', 'PHP', 'Laravel', 'SQL/MySQL', 'Figma', 'Canva'].map((tech, index) => (
             <span 
               key={tech}
               className="px-4 py-2 rounded-full text-sm font-medium bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-gray-300 hover:border-purple-500/50 hover:text-white transition-all duration-300 hover:scale-105"
@@ -152,22 +152,6 @@ export default function Hero() {
               <Sparkles className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
             </span>
           </a>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto border-t border-gray-800/50 pt-8">
-          {[
-            { value: '50+', label: 'Projects' },
-            { value: '3+', label: 'Years Exp' },
-            { value: '100%', label: 'Satisfaction' }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                {stat.value}
-              </div>
-              <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
-            </div>
-          ))}
         </div>
 
         {/* Scroll indicator */}
