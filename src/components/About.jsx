@@ -101,7 +101,7 @@ export default function About() {
         background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)'
       }}
     >
-      {/* Background gradients */}
+      {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-900/10 rounded-full blur-3xl"></div>
@@ -133,7 +133,6 @@ export default function About() {
 
         {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left Column - About Text & Passions */}
           <div className="space-y-10">
             {/* About Card */}
             <div className="relative group">
