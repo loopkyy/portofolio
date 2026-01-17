@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Phone, MapPin, Send, Sparkles, MessageSquare, Coffee, Rocket, CheckCircle, X } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageCircle, MapPin, Send, Sparkles, MessageSquare, Coffee, Instagram, CheckCircle, X } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,20 +9,51 @@ export default function Contact() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // Formspree Configuration
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqeeegyy"; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: "New Message from Portfolio Website",
+          _replyto: formData.email
+        }),
+      });
       
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+      const data = await response.json();
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        if (data.errors) {
+          setError(data.errors[0].message);
+        } else {
+          setError("Something went wrong. Please try again.");
+        }
+      }
+    } catch (error) {
+      setError("Network error. Please check your connection and try again.");
+      console.error("Form submission error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -30,43 +61,44 @@ export default function Contact() {
       ...formData,
       [e.target.name]: e.target.value
     });
+    if (error) setError('');
   };
 
   const socialLinks = [
     { 
       icon: <Github className="w-6 h-6" />, 
-      href: "https://github.com", 
+      href: "https://github.com/loopkyy", 
       label: "GitHub",
       color: "from-gray-800 to-gray-900",
       hover: "hover:from-gray-700 hover:to-gray-800"
     },
     { 
       icon: <Linkedin className="w-6 h-6" />, 
-      href: "https://linkedin.com", 
+      href: "https://www.linkedin.com/in/rizky-riaadha-rismandana-472173370/", 
       label: "LinkedIn",
       color: "from-blue-700 to-blue-800",
       hover: "hover:from-blue-600 hover:to-blue-700"
     },
     { 
-      icon: <Mail className="w-6 h-6" />, 
-      href: "mailto:hello@example.com", 
-      label: "Email",
+      icon: <Instagram className="w-6 h-6" />, 
+      href: "https://www.instagram.com/riaadha.rizky/", 
+      label: "Instagram",
       color: "from-purple-700 to-pink-700",
       hover: "hover:from-purple-600 hover:to-pink-600"
     },
     { 
-      icon: <Phone className="w-6 h-6" />, 
-      href: "tel:+1234567890", 
-      label: "Phone",
+      icon: <MessageCircle className="w-6 h-6" />, 
+      href: "https://wa.me/6285382906012", 
+      label: "WhatsApp",
       color: "from-green-700 to-emerald-700",
       hover: "hover:from-green-600 hover:to-emerald-600"
     },
   ];
 
   const contactInfo = [
-    { icon: <Mail className="w-5 h-5" />, text: "hello@rizky.dev", value: "mailto:hello@rizky.dev" },
-    { icon: <Phone className="w-5 h-5" />, text: "+62 812 3456 7890", value: "tel:+6281234567890" },
-    { icon: <MapPin className="w-5 h-5" />, text: "Jakarta, Indonesia", value: "#" },
+    { icon: <Mail className="w-5 h-5" />, text: "riaadha.rizky@gmail.com", value: "mailto:riaadha.rizky@gmail.com" },
+    { icon: <MessageCircle className="w-5 h-5" />, text: "+6285382906012", value: "https://wa.me/6285382906012" },
+    { icon: <MapPin className="w-5 h-5" />, text: "Kuningan, Indonesia", value: "https://maps.app.goo.gl/AEyzA9uH5hwQvXxK6" },
   ];
 
   return (
@@ -79,8 +111,8 @@ export default function Contact() {
     >
       {/* Background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-purple-900/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-64 h-64 bg-cyan-900/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-purple-900/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-64 h-64 bg-cyan-900/20 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-96 bg-gradient-to-t from-gray-900/10 to-transparent"></div>
       </div>
 
@@ -96,7 +128,7 @@ export default function Contact() {
             <span className="bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
               Let's Build
             </span>
-            <span className="mx-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+            <span className="mx-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Something
             </span>
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
@@ -124,6 +156,8 @@ export default function Contact() {
                   <a 
                     key={index}
                     href={info.value}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-xl bg-gray-900/30 border border-gray-800/30 hover:border-cyan-500/30 hover:bg-gray-800/30 transition-all duration-300 group"
                   >
                     <div className="p-3 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 group-hover:from-cyan-900/50 group-hover:to-blue-900/50 transition">
@@ -156,27 +190,6 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
-            {/* Stats Card */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-800/30">
-              <div className="flex items-center justify-between mb-6">
-                <Rocket className="w-8 h-8 text-purple-400" />
-                <Sparkles className="w-6 h-6 text-pink-400 animate-pulse" />
-              </div>
-              <h4 className="text-xl font-bold text-gray-200 mb-2">Quick Response</h4>
-              <p className="text-gray-400 text-sm mb-4">I typically reply within 24 hours</p>
-              <div className="flex items-center gap-4">
-                <div className="flex-1">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">100%</div>
-                  <div className="text-gray-400 text-sm">Response Rate</div>
-                </div>
-                <div className="w-px h-12 bg-gradient-to-b from-transparent via-purple-700/50 to-transparent"></div>
-                <div className="flex-1">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">24h</div>
-                  <div className="text-gray-400 text-sm">Avg. Response</div>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Contact Form */}
@@ -190,7 +203,7 @@ export default function Contact() {
                       <div className="p-2 rounded-full bg-emerald-500/20">
                         <CheckCircle className="w-6 h-6 text-emerald-400" />
                       </div>
-                      <h4 className="text-lg font-bold text-gray-200">Message Sent!</h4>
+                      <h4 className="text-lg font-bold text-gray-200">Message Sent Successfully!</h4>
                     </div>
                     <button 
                       onClick={() => setIsSubmitted(false)}
@@ -206,6 +219,26 @@ export default function Contact() {
               </div>
             )}
 
+            {/* Error Message */}
+            {error && (
+              <div className="absolute top-0 left-0 right-0 z-40 animate-slideDown">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-red-900/40 to-orange-900/40 backdrop-blur-sm border border-red-800/50 mb-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-300">⚠️</span>
+                      <p className="text-gray-300 text-sm">{error}</p>
+                    </div>
+                    <button 
+                      onClick={() => setError('')}
+                      className="p-1 rounded-lg hover:bg-red-900/30 transition"
+                    >
+                      <X className="w-4 h-4 text-red-400" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="p-8 rounded-2xl bg-gray-900/40 backdrop-blur-sm border border-gray-800/50">
               <h3 className="text-2xl font-bold text-gray-200 mb-2 flex items-center gap-2">
                 <Send className="w-6 h-6 text-cyan-400" />
@@ -216,7 +249,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="group">
                   <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-cyan-400 transition">
-                    Your Name
+                    Your Name *
                   </label>
                   <input
                     type="text"
@@ -224,14 +257,15 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    minLength="2"
                     className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800/50 text-gray-200 placeholder-gray-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition"
-                    placeholder="John Doe"
+                    placeholder="Rizky Riaadha Rismandana"
                   />
                 </div>
 
                 <div className="group">
                   <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-purple-400 transition">
-                    Email Address
+                    Email Address *
                   </label>
                   <input
                     type="email"
@@ -240,19 +274,20 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800/50 text-gray-200 placeholder-gray-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/30 transition"
-                    placeholder="john@example.com"
+                    placeholder="example@gmail.com"
                   />
                 </div>
 
                 <div className="group">
                   <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-pink-400 transition">
-                    Your Message
+                    Your Message *
                   </label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    minLength="10"
                     rows={5}
                     className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800/50 text-gray-200 placeholder-gray-600 focus:outline-none focus:border-pink-500/50 focus:ring-1 focus:ring-pink-500/30 transition resize-none"
                     placeholder="Tell me about your project..."
@@ -276,7 +311,7 @@ export default function Contact() {
                     {isLoading ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        <span>Sending...</span>
+                        <span>Processing...</span>
                       </>
                     ) : (
                       <>
