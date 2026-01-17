@@ -1,16 +1,89 @@
-# React + Vite
+# 🚀 Rizky Riaadha Rismandana – Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website built to showcase my projects, skills, and journey as an Informatics Engineering student with a strong interest in frontend and full-stack web development.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:**  
+https://riaadha-portofolio.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 👋 About Me
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Hi, I'm **Rizky Riaadha Rismandana**, an Informatics Engineering student  who is passionate about building modern, responsive, and user-friendly web applications.
 
-## Expanding the ESLint configuration
+I focus primarily on **frontend development**, while also having experience in **backend development** using PHP frameworks. I enjoy learning new technologies and continuously improving my skills through real projects.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+- React
+- Tailwind CSS
+
+### Backend
+- PHP
+- CodeIgniter 4
+- Laravel
+
+### Database
+- MySQL
+
+### Tools & Design
+- Git & GitHub
+- Figma
+- Canva
+
+---
+
+## 📂 Features
+
+- Responsive modern UI
+- About & skills section
+- Projects showcase with GitHub links
+- Contact form (Formspree integration)
+- Smooth animations & transitions
+- Deployed with Vercel
+
+---
+
+## 📸 Projects
+
+Each project includes:
+- Description
+- Tech stack used
+- GitHub repository link
+- Live preview (if available)
+
+---
+
+## ⚙️ Installation & Setup
+
+If you want to run this project locally:
+
+```bash
+# Clone repository
+git clone https://github.com/loopkyy/portofolio.git
+
+# Go to project folder
+cd portofolio
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+🚀 Deployment
+This project is deployed using Vercel and automatically updates on every push to the main branch.
+
+📬 Contact
+Email: riaadha.rizky@gmail.com
+
+GitHub: https://github.com/loopkyy
+
+LinkedIn: https://www.linkedin.com/in/rizky-riaadha-rismandana-472173370/
+
+Portfolio: https://riaadha-portofolio.vercel.app
